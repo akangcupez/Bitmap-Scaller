@@ -1,0 +1,124 @@
+public class BitmapScaler {
+
+    public BitmapScaler()
+    {
+        //Empty constructor
+    }
+
+    /**
+     * Scale to Fit Width and keep aspect ratio
+     * filter is set to false
+     *
+     * @param b Bitmap
+     * @param width int
+     * @return Bitmap
+     */
+    public static Bitmap scaleToFitWidth(Bitmap b, int width)
+    {
+        return scaleToFitWidth(b, width, false);
+    }
+
+    /**
+     * Scale to Fit Width and keep aspect ratio
+     * @param b Bitmap
+     * @param width int
+     * @param filter boolean
+     * @return Bitmap
+     */
+    public static Bitmap scaleToFitWidth(Bitmap b, int width, boolean filter)
+    {
+        float factor = width / (float) b.getWidth();
+        return Bitmap.createScaledBitmap(b, width, (int) (b.getHeight() * factor), filter);
+    }
+
+    /**
+     * Scale to Fit Height and keep aspect ratio
+     * filter is set to false
+     *
+     * @param b Bitmap
+     * @param height int
+     * @return Bitmap
+     */
+    public static Bitmap scaleToFitHeight(Bitmap b, int height)
+    {
+        return scaleToFitHeight(b, height, false);
+    }
+
+    /**
+     * Scale to Fit Height and keep aspect ratio
+     *
+     * @param b Bitmap
+     * @param height int
+     * @param filter int
+     * @return Bitmap
+     */
+    public static Bitmap scaleToFitHeight(Bitmap b, int height, boolean filter) {
+        float factor = height / (float) b.getHeight();
+        return Bitmap.createScaledBitmap(b, (int) (b.getWidth() * factor), height, filter);
+    }
+
+    /**
+     * Scale to Fill and keep aspect ratio
+     * filter is set to false
+     *
+     * @param b Bitmap
+     * @param width int
+     * @param height int
+     * @return Bitmap
+     */
+    public static Bitmap scaleToFill(Bitmap b, int width, int height)
+    {
+        return scaleToFill(b, width, height, false);
+    }
+
+    /**
+     * Scale to Fill and keep aspect ratio
+     *
+     * @param b Bitmap
+     * @param width int
+     * @param height int
+     * @param filter boolean
+     * @return Bitmap
+     */
+    public static Bitmap scaleToFill(Bitmap b, int width, int height, boolean filter)
+    {
+        float factorW = width / (float) b.getWidth();
+        float factorH = height / (float) b.getWidth();
+        float factorToUse = Math.min(factorH, factorW);
+
+        return Bitmap.createScaledBitmap(b, (int) (b.getWidth() * factorToUse),
+                (int) (b.getHeight() * factorToUse), filter);
+    }
+
+    /**
+     * Stretch to Fill and don't keep aspect ratio
+     * filter is set to false
+     *
+     * @param b Bitmap
+     * @param width int
+     * @param height int
+     * @return Bitmap
+     */
+    public static Bitmap strechToFill(Bitmap b, int width, int height)
+    {
+        return strechToFill(b, width, height, false);
+    }
+
+    /**
+     * Stretch to Fill and don't keep aspect ratio
+     *
+     * @param b Bitmap
+     * @param width int
+     * @param height int
+     * @param filter boolean
+     * @return Bitmap
+     */
+    public static Bitmap strechToFill(Bitmap b, int width, int height, boolean filter)
+    {
+        float factorH = height / (float) b.getHeight();
+        float factorW = width / (float) b.getWidth();
+        return Bitmap.createScaledBitmap(b, (int) (b.getWidth() * factorW),
+                (int) (b.getHeight() * factorH), filter);
+    }
+
+}
